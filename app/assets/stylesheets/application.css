@@ -1,0 +1,34 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+
+/* Login css */
+
+/* Apply a background image to the entire page */
+body {
+  margin: 0;
+  padding: 0;
+  /* background: url('your-background-image-url.jpg') no-repeat center center fixed; */
+  background-image: url('../images/back.webp'); /* Replace with your image filename */
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  /* background-color: #f0f4f8; Light blue-gray background color */
+  /* background: linear-gradient(to right, #6a11cb, #2575fc); Gradient from purple to blue */
+  background: linear-gradient(to right, #e0eafc, #cfdef3); /* Light blue gradient */
+}
+
+/* Style for the login container */

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tayyari Education Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .navbar {
+      background-color: #007bff;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar p {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar .auth-links {
+      display: flex;
+      gap: 10px;
+    }
+    .navbar .auth-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #0056b3;
+    }
+    .navbar .auth-links a:hover {
+      background-color: #003f7f;
+    }
+    .content {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      flex: 1;
+    }
+    .hero {
+      background-color: #007bff;
+      color: white;
+      padding: 40px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .hero h1 {
+      margin: 0 0 20px;
+      font-size: 36px;
+      font-weight: bold;
+    }
+    .hero p {
+      font-size: 18px;
+      margin: 0 0 20px;
+    }
+    .features {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .feature-box {
+      flex: 1;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .feature-box h3 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #007bff;
+    }
+    .feature-box p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555;
+    }
+    .feature-box .cta {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .feature-box .cta a {
+      text-decoration: none;
+      color: white;
+      background-color: #28a745;
+      padding: 10px 20px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .feature-box .cta a:hover {
+      background-color: #218838;
+    }
+    .footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #f8f9fa;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .form-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .signup-form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 52px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.9);
+      background-image: url('../images/back.webp');
+      background-size: cover;
+      background-position: center;
+    }
+    .field {
+      margin-bottom: 15px;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .submit-button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background-color: #0056b3;
+    }
+    .error-messages {
+      color: red;
+      margin-bottom: 15px;
+    }
+    .links {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <p>Tayyari Education</p>
+    <div class="auth-links">
+      <% if user_signed_in? %>
+        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: '', style: "background-color: #ff4c4c; color: white; border: none; padding: 8px 16px; border-radius: 4px;" %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: '', style: "background-color: #28a745; color: white; padding: 8px 16px; border-radius: 4px;" %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: '', style: "background-color: #17a2b8; color: white; padding: 8px 16px; border-radius: 4px;" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2 class="form-heading">Sign Up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'signup-form' }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource, class: 'error-messages' %>
+
+      <div class="field">
+        <%= f.label :email, class: 'form-label' %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-input' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, class: 'form-label' %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-input' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, class: 'form-label' %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-input' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :profile_picture, class: 'form-label' %><br />
+        <%= f.file_field :attachment, class: 'form-control-file' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: 'submit-button' %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links", class: 'links' %>
+  </div>
+
+  <div class="footer">
+    <p>&copy; <%= Time.now.year %> Tayyari Education. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
+    </p>
+  </div>
+
+</body>
+</html>

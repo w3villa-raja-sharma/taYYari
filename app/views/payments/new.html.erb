@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #007bff;
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .plans {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .plan {
+      flex: 1;
+      margin: 0 10px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .plan h3 {
+      margin: 0;
+      color: #007bff;
+      font-size: 22px;
+    }
+    .plan p {
+      margin: 10px 0;
+      color: #555;
+      font-size: 18px;
+    }
+    .plan button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .plan button:hover {
+      background: #0056b3;
+    }
+    .security {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+    .security p {
+      margin: 10px 0;
+    }
+    .navbar {
+      background-color: #007bff;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar p {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar .auth-links {
+      display: flex;
+      gap: 10px;
+    }
+    .navbar .auth-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #0056b3;
+    }
+    .navbar .auth-links a:hover {
+      background-color: #003f7f;
+    }
+    .footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: auto;
+    }
+    .footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #f8f9fa;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <p>Tayyari Education</p>
+    <div class="auth-links">
+      <% if user_signed_in? %>
+        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: '', style: "background-color: #ff4c4c; color: white; border: none; padding: 8px 16px; border-radius: 4px;" %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: '', style: "background-color: #28a745; color: white; padding: 8px 16px; border-radius: 4px;" %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: '', style: "background-color: #17a2b8; color: white; padding: 8px 16px; border-radius: 4px;" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Payment Gateway</h1>
+    
+    <h2>Make a Payment</h2>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Silver Pay</h3>
+        <p>$5.00</p>
+         <%= form_tag payments_path do %>
+  <article>
+    <label class="amount">
+      <span>Amount: $5.00</span>
+    </label>
+  </article>
+
+  <%= hidden_field_tag :amount, 500 %>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= @stripe_publishable_key %>"
+    data-amount="500"
+    data-name="Rails Stripe Payment"
+    data-description="A simple payment form"
+    data-email="<%= current_user.email %>"
+    data-locale="auto">
+  </script>
+<% end %>
+      </div>
+
+      <div class="plan">
+        <h3>Gold Pay</h3>
+        <p>$10.00</p>
+        <%= form_tag payments_path do %>
+  <article>
+    <label class="amount">
+      <span>Amount: $10.00</span>
+    </label>
+  </article>
+
+  <%= hidden_field_tag :amount, 500 %>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= @stripe_publishable_key %>"
+    data-amount="500"
+    data-name="Rails Stripe Payment"
+    data-description="A simple payment form"
+    data-email="<%= current_user.email %>"
+    data-locale="auto">
+  </script>
+<% end %>
+      </div>
+
+      <div class="plan">
+        <h3>Platinum Pay</h3>
+        <p>$20.00</p>
+        <%= form_tag payments_path do %>
+  <article>
+    <label class="amount">
+      <span>Amount: $20.00</span>
+    </label>
+  </article>
+
+  <%= hidden_field_tag :amount, 500 %>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= @stripe_publishable_key %>"
+    data-amount="500"
+    data-name="Rails Stripe Payment"
+    data-description="A simple payment form"
+    data-email="<%= current_user.email %>"
+    data-locale="auto">
+  </script>
+<% end %>
+      </div>
+    </div>
+
+    <div class="security">
+      <h3>Payment Security</h3>
+      <p>Your payment information is securely handled by Stripe. We use industry-standard encryption and security protocols to ensure your data is safe. Stripe complies with PCI-DSS requirements to protect your payment details and provides secure transactions through their platform.</p>
+    </div>
+  </div>
+
+
+  <div class="footer">
+    <p>&copy; <%= Time.now.year %> Tayyari Education. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
+    </p>
+  </div>
+
+</body>
+</html>
+
+
+
+
+

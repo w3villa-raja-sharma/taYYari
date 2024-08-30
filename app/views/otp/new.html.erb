@@ -1,0 +1,15 @@
+<h1>Otp#new</h1>
+<p>Find me in app/views/otp/new.html.erb</p>
+
+<h1>Enter your phone number</h1>
+
+<%= form_with url: otp_create_path, method: :post do |form| %>
+  <div>
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+  <div>
+    <%= form.submit "Send OTP" %>
+  </div>
+<% end %>
+

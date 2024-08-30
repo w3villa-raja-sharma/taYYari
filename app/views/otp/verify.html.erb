@@ -1,0 +1,15 @@
+# <h1>Otp#verify</h1>
+# <p>Find me in app/views/otp/verify.html.erb</p>
+
+
+<h1>Verify your phone number</h1>
+
+<%= form_with url: otp_check_path, method: :post do %>
+  <div>
+    <%= label_tag :otp, "Enter OTP" %>
+    <%= text_field_tag :otp %>
+  </div>
+  <div>
+    <%= submit_tag "Verify OTP" %>
+  </div>
+<% end %>
