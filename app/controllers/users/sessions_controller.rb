@@ -11,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
         u.image = auth['info']['image']
       end
   
-      if user.persisted?
+      if user.persisted?  
         session[:user_id] = user.id
         redirect_to root_path, notice: 'Signed in successfully'
       else

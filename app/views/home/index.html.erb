@@ -122,12 +122,20 @@
   <div class="navbar">
     <p>Tayyari Education</p>
     <div class="auth-links">
+      <% if current_user.present?%>
+        <% if current_user.attachment.attached? %>
+         <%= image_tag Rails.application.routes.url_helpers.url_for(current_user.attachment), height: '50', width: '50', style: 'border-radius: 50%; border: solid white 1px;' %>
+        <% else %>
+            <%#= image_tag 'default_profile.png', height: '50', width: '50', style: 'border-radius: 50%; border: solid white 1px;' %>
+        <% end %>
+      <% end %>
       <% if user_signed_in? %>
         <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: '', style: "background-color: #ff4c4c; color: white; border: none; padding: 8px 16px; border-radius: 4px;" %>
       <% else %>
         <%= link_to 'Login', new_user_session_path, class: '', style: "background-color: #28a745; color: white; padding: 8px 16px; border-radius: 4px;" %>
         <%= link_to 'Sign Up', new_user_registration_path, class: '', style: "background-color: #17a2b8; color: white; padding: 8px 16px; border-radius: 4px;" %>
       <% end %>
+      
     </div>
   </div>
 
