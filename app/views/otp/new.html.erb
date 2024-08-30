@@ -1,15 +1,136 @@
-<h1>Otp#new</h1>
-<p>Find me in app/views/otp/new.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OTP Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .navbar {
+      background-color: #007bff;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar p {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar .auth-links {
+      display: flex;
+      gap: 10px;
+    }
+    .navbar .auth-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #0056b3;
+    }
+    .navbar .auth-links a:hover {
+      background-color: #003f7f;
+    }
+    .container {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    input[type="text"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: auto;
+    }
+    .footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #f8f9fa;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
 
-<h1>Enter your phone number</h1>
-
-<%= form_with url: otp_create_path, method: :post do |form| %>
-  <div>
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
+  <div class="navbar">
+    <p>Tayyari Education</p>
+    <div class="auth-links">
+      <% if user_signed_in? %>
+        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: '', style: "background-color: #ff4c4c; color: white; border: none; padding: 8px 16px; border-radius: 4px;" %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: '', style: "background-color: #28a745; color: white; padding: 8px 16px; border-radius: 4px;" %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: '', style: "background-color: #17a2b8; color: white; padding: 8px 16px; border-radius: 4px;" %>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= form.submit "Send OTP" %>
-  </div>
-<% end %>
 
+  <div class="container">
+    <h1>Enter Your Phone Number</h1>
+
+    <%= form_with url: otp_create_path, method: :post do |form| %>
+      <div>
+        <%= form.label :phone_number, "Phone Number" %>
+        <%= form.text_field :phone_number, placeholder: "e.g., 123-456-7890" %>
+      </div>
+      <div>
+        <%= form.submit "Send OTP" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="footer">
+    <p>&copy; <%= Time.now.year %> Tayyari Education. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
+    </p>
+  </div>
+
+</body>
+</html>

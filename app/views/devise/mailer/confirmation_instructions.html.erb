@@ -1,5 +1,57 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007BFF;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+    <title>Email Confirmation</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome <%= @email %>!</h1>
+        <p>Thank you for signing up! Please confirm your email address by clicking the link below:</p>
+        <p><a href="<%= confirmation_url(@resource, confirmation_token: @token) %>">Confirm my account</a></p>
+        <div class="footer">
+            <p>If you did not sign up for an account, you can safely ignore this email.</p>
+            <p>Thank you,<br>Tayyari Education</p>
+        </div>
+    </div>
+</body>
+</html>
