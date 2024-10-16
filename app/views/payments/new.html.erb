@@ -87,7 +87,7 @@
     }
     .navbar p {
       margin: 0;
-      font-size: 24px;
+      font-size: 40px;
       font-weight: bold;
     }
     .navbar .auth-links {
@@ -103,6 +103,44 @@
     }
     .navbar .auth-links a:hover {
       background-color: #003f7f;
+    }
+
+   
+    .banks {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .banks h3 {
+      color: #007bff;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .banks .bank-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .banks .bank {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 120px;
+    }
+    .banks .bank img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .banks .bank p {
+      margin: 0;
+      color: #333;
+      font-size: 16px;
     }
     .footer {
       background-color: #343a40;
@@ -127,7 +165,7 @@
 <body>
 
   <div class="navbar">
-    <p>Tayyari Education</p>
+    <p>TAYYARI</p>
     <div class="auth-links">
       <% if user_signed_in? %>
         <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: '', style: "background-color: #ff4c4c; color: white; border: none; padding: 8px 16px; border-radius: 4px;" %>
@@ -223,9 +261,33 @@
     </div>
   </div>
 
+ 
+    <!-- New Banks Section -->
+    <div class="banks">
+      <h3>Our Supported Banks</h3>
+      <div class="bank-list">
+        <div class="bank">
+          <img src="../assets/sbi.jpg" alt="SBI">
+          <p>SBI</p>
+        </div>
+        <div class="bank">
+          <img src="../assets/icici.jpg" alt="ICICI">
+          <p>ICICI</p>
+        </div>
+        <div class="bank">
+          <img src="../assets/idfc.jpg" alt="IDFC">
+          <p>IDFC</p>
+        </div>
+        <div class="bank">
+          <img src="../assets/hdfc.jpg" alt="HDFC">
+          <p>HDFC</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="footer">
-    <p>&copy; <%= Time.now.year %> Tayyari Education. All rights reserved.</p>
+    <p>&copy; <%= Time.now.year %> TAYYARI. All rights reserved.</p>
     <p>
       <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
     </p>

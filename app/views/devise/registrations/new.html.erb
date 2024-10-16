@@ -22,7 +22,7 @@
     }
     .navbar p {
       margin: 0;
-      font-size: 24px;
+      font-size: 40px;
       font-weight: bold;
     }
     .navbar .auth-links {
@@ -171,7 +171,7 @@
 <body>
 
   <div class="navbar">
-    <p>Tayyari Education</p>
+    <p>TAYYARI</p>
     <div class="auth-links">
       <% if user_signed_in? %>
         <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: '', style: "background-color: #ff4c4c; color: white; border: none; padding: 8px 16px; border-radius: 4px;" %>
@@ -220,7 +220,7 @@
   </div>
 
   <div class="footer">
-    <p>&copy; <%= Time.now.year %> Tayyari Education. All rights reserved.</p>
+    <p>&copy; <%= Time.now.year %> TAYYARI. All rights reserved.</p>
     <p>
       <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
     </p>

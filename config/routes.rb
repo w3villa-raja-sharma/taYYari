@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'users/index'
+    get 'users/new'
+    get 'users/edit'
+  end
   get 'payments/new'
   get 'payments/create'
   get 'otp/new'
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
   }
   
   resource :payments, only: [:new, :create]
+  resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
 
   root 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -27,6 +33,7 @@ Rails.application.routes.draw do
 
 
   get 'users/auth/:provider/callback', to: 'sessions#omniauth'
+   get '/auth/github/callback', to: 'sessions#create'
   
   get '/auth/failure', to: redirect('/')
 
@@ -34,3 +41,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 end
+

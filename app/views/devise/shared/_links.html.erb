@@ -2,6 +2,14 @@
   <%= link_to "Log in", new_session_path(resource_name), style: "color: #007bff; text-decoration: none; font-weight: bold; font-size: 14px;" %><br />
 <% end %>
 
+<%- if devise_mapping.omniauthable? %>
+  <div style="text-align: center;">
+    <% resource_class.omniauth_providers.each do |provider| %>
+      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", send("user_#{provider}_omniauth_authorize_path"), data: { turbo: false }, style: "background-color: #4285F4; color: #ffffff; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; cursor: pointer; display: inline-block;" %><br />
+    <% end %>
+  </div>
+<% end %>
+
 <% if devise_mapping.registerable? && controller_name != 'registrations' %>
   <%= link_to "Sign up", new_registration_path(resource_name), style: "color: #28a745; text-decoration: none; font-weight: bold; font-size: 14px;" %><br />
 <% end %>
@@ -16,12 +24,4 @@
 
 <% if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), style: "color: #6c757d; text-decoration: none; font-weight: bold; font-size: 14px;" %><br />
-<% end %>
-
-<%- if devise_mapping.omniauthable? %>
-  <div style="text-align: center;">
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", 'http://127.0.0.1:3000/users/auth/google_oauth2', data: { turbo: false }, style: "background-color: #4285F4; color: #ffffff; border: none; padding: 10px 20px; border-radius: 5px; font-size: 14px; cursor: pointer; display: inline-block;" %><br />
-    <% end %>
-  </div>
 <% end %>

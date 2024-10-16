@@ -19,6 +19,7 @@ gem 'letter_opener'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github' , github: 'omniauth/omniauth-github'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 
