@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'pages/contact_us'
+
+  # Add the new route here
+  get 'contact_us', to: 'pages#contact_us'
+
+  # Add this for the contact form submission
+  
+  post 'contact_us', to: 'pages#submit_contact'
+
   namespace :admin do
     get 'users/index'
     get 'users/new'

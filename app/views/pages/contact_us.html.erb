@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAYYARI - Education Partner</title>
+  <style>
+   
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .navbar {
+      background-color: #007bff;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar p {
+      margin: 0;
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .auth-links {
+      display: flex;
+      gap: 10px;
+    }
+    .auth-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #0056b3;
+    }
+    .auth-links a:hover {
+      background-color: #003f7f;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar Section -->
+  <div class="navbar">
+    <p>TAYYARI</p>
+    <div class="auth-links">
+      <% if user_signed_in? %>
+        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: '', style: "background-color: #ff4c4c; color: white; border: none; padding: 8px 16px; border-radius: 4px;" %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: '', style: "background-color: #28a745; color: white; padding: 8px 16px; border-radius: 4px;" %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: '', style: "background-color: #17a2b8; color: white; padding: 8px 16px; border-radius: 4px;" %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Contact Form Section -->
+  <div class="contact-container container">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      p {
+        text-align: center;
+        margin-bottom: 40px;
+        color: white;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .form-control:focus {
+        border-color: #007BFF;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+      .btn-submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .btn-submit:hover {
+        background-color: #0056b3;
+      }
+    </style>
+
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you! Fill out the form below to get in touch.</p>
+
+    <%= form_with url: contact_us_path, method: :post, local: true, class: "contact-form" do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "Your Name" %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "Your Email" %>
+        <%= f.email_field :email, required: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :message, "Your Message" %>
+        <%= f.text_area :message, required: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Send Message", class: "btn-submit" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer-container">
+    <style>
+      .footer-container {
+        background-color: #2c3e50;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+        border-top: 5px solid #007BFF;
+      }
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-content h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #ffffff;
+      }
+      .footer-content p {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #ecf0f1;
+      }
+      .social-icons a {
+        margin: 0 10px;
+        color: white;
+        font-size: 24px;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .social-icons a:hover {
+        color: #007BFF;
+      }
+      .footer-bottom {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #bdc3c7;
+      }
+    </style>
+
+    <div class="footer-content">
+      <h2>TAYYARI - Your Education Partner</h2>
+      <p>Empowering students with quality education resources and support.</p>
+
+      <div class="contact-details">
+        <p><strong>Email:</strong> <a href="mailto:hr@tayyari.com">hr@tayyari.com</a></p>
+        <p><strong>Phone:</strong> +91-12345-67890</p>
+        <p><strong>Address:</strong> M-7362 Block M, Sigra, Varanasi, India</p>
+      </div>
+
+      <div class="social-icons">
+        <a href="https://facebook.com/tayyari" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/tayyari" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/company/tayyari" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2024 TAYYARI. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
